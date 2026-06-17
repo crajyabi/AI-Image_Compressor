@@ -4,92 +4,118 @@
 
 <div class="tool-page">
 
-    <div class="glass-card upload-card">
+```
+<div class="glass-card upload-card">
 
-        <div class="upload-header">
+    <div class="upload-header">
 
-            <h1>⚡ AI Image Compressor</h1>
+        <h1>⚡ AI Image Compressor</h1>
 
-            <p>
-                Compress images with futuristic AI optimization
-            </p>
-
-            
-        </div>
-
-        <form
-            action="/compress"
-            method="POST"
-            enctype="multipart/form-data"
-            class="upload-form"
-        >
-
-            <label class="drop-zone">
-
-                <input
-                    type="file"
-                    id="imageInput"
-                    name="image"
-                    accept=".jpg,.jpeg,.png,.webp"
-                    required
-                    
-                >
-                <div class="preview-container">
-                    <img
-                        id="previewImage"
-                        style="
-                            display:none;
-                            max-width:300px;
-                            margin-top:20px;
-                            border-radius:12px;
-                        "
-                    >
-
-                </div>
-
-
-            </label>
-
-            <br><br>
-
-            <label>
-                Compression Quality
-
-            <span id="qualityValue">
-             80%
-            </span>
-            </label>
-            <input
-                type="range"
-                name="qualitySlider"
-                min="10"
-                max="100"
-                value="80"
-            >
-            <p>
-                <span id="estimatedSize">
-
-                 -
-
-                </span>  
-            </p>
-
-            <br><br>
-
-            <button
-                type="submit"
-                class="premium-btn"
-            >
-
-                ⚡ Compress Image
-
-            </button>
-
-        </form>
+        <p>
+            Compress images with futuristic AI optimization
+        </p>
 
     </div>
 
+    <form
+        action="/compress"
+        method="POST"
+        enctype="multipart/form-data"
+        class="upload-form"
+    >
+
+        <label class="drop-zone">
+
+            <input
+                type="file"
+                id="imageInput"
+                name="image"
+                accept=".jpg,.jpeg,.png,.webp"
+                required
+            >
+
+        </label>
+
+        <div class="preview-container">
+
+            <img
+                id="previewImage"
+                style="
+                    display:none;
+                    max-width:400px;
+                    max-height:300px;
+                    margin-top:20px;
+                    border-radius:12px;
+                    border:2px solid rgba(255,255,255,0.2);
+                "
+            >
+
+        </div>
+
+        <div id="fileInfo" style="margin-top:20px;">
+
+            <p>
+                File Size:
+                <span id="fileSize">
+                    -
+                </span>
+            </p>
+
+        </div>
+
+        <br>
+
+        <label>
+
+            Compression Quality:
+            <span id="qualityValue">
+                80%
+            </span>
+
+        </label>
+
+        <input
+            type="range"
+            id="qualitySlider"
+            min="10"
+            max="100"
+            value="80"
+        >
+
+        <input
+            type="hidden"
+            name="quality"
+            id="qualityHidden"
+            value="80"
+        >
+
+        <p>
+
+            Estimated Output:
+            <span id="estimatedSize">
+                -
+            </span>
+
+        </p>
+
+        <br>
+
+        <button
+            type="submit"
+            class="premium-btn"
+        >
+
+            Compress Image
+
+        </button>
+
+    </form>
+
 </div>
+```
+
+</div>
+
 <script>
 
 document.addEventListener(
@@ -106,6 +132,21 @@ function(){
     "previewImage"
     );
 
+    const slider =
+    document.getElementById(
+    "qualitySlider"
+    );
+
+    const qualityValue =
+    document.getElementById(
+    "qualityValue"
+    );
+
+    const qualityHidden =
+    document.getElementById(
+    "qualityHidden"
+    );
+
     imageInput.addEventListener(
     "change",
 
@@ -116,9 +157,44 @@ function(){
 
         if(!file) return;
 
-        console.log(
-        "File Selected"
-        );
+        const allowed = [
+
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+
+        ];
+
+        if(
+            !allowed.includes(
+                file.type
+            )
+        ){
+
+            alert(
+            "Only JPG PNG WEBP allowed"
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+        const sizeMB =
+
+        (
+            file.size
+            /
+            1024
+            /
+            1024
+        ).toFixed(2);
+
+        document.getElementById(
+        "fileSize"
+        ).innerText =
+        sizeMB + " MB";
 
         const reader =
         new FileReader();
@@ -132,17 +208,55 @@ function(){
             preview.style.display =
             "block";
 
-            console.log(
-            "Preview Loaded"
-            );
-
         }
 
         reader.readAsDataURL(file);
 
     });
 
+    slider.addEventListener(
+    "input",
+
+    function(){
+
+        qualityValue.innerText =
+        this.value + "%";
+
+        qualityHidden.value =
+        this.value;
+
+        const file =
+        imageInput.files[0];
+
+        if(!file) return;
+
+        const estimated =
+
+        (
+            (
+                file.size
+                /
+                1024
+                /
+                1024
+            )
+            *
+            (
+                this.value
+                /
+                100
+            )
+        ).toFixed(2);
+
+        document.getElementById(
+        "estimatedSize"
+        ).innerText =
+        estimated + " MB";
+
+    });
+
 });
 
 </script>
+
 {% endblock %}

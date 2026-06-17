@@ -30,6 +30,10 @@ UPLOAD_FOLDER = "uploads"
 OUTPUT_FOLDER = "output"
 COMPRESSED_FOLDER = "compressed"
 
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+os.makedirs(COMPRESSED_FOLDER, exist_ok=True)
+
 
 # =========================
 # HOME PAGE
