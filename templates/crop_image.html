@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="tool-container">
+
+    <h1>✂️ Crop Image</h1>
+
+    <p>Crop images professionally with AI Media Toolkit.</p>
+
+    <form action="/crop-image" method="POST" enctype="multipart/form-data">
+
+        <input type="file" name="image" required>
+
+        <input type="number" name="left" placeholder="Left" required>
+
+        <input type="number" name="top" placeholder="Top" required>
+
+        <input type="number" name="right" placeholder="Right" required>
+
+        <input type="number" name="bottom" placeholder="Bottom" required>
+
+        <button type="submit">
+            Crop Image
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="tool-page">
+
+    <div class="glass-card upload-card">
+
+        <div class="upload-header">
+
+            <h1>⚡ AI Image Compressor</h1>
+
+            <p>
+                Compress images with futuristic AI optimization
+            </p>
+
+            
+        </div>
+
+        <form
+            action="/compress"
+            method="POST"
+            enctype="multipart/form-data"
+            class="upload-form"
+        >
+
+            <label class="drop-zone">
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    name="image"
+                    accept=".jpg,.jpeg,.png,.webp"
+                    required
+                    
+                >
+                <div class="preview-container">
+                    <img
+                        id="previewImage"
+                        style="
+                            display:none;
+                            max-width:300px;
+                            margin-top:20px;
+                            border-radius:12px;
+                        "
+                    >
+
+                </div>
+
+
+            </label>
+
+            <br><br>
+
+            <label>
+                Compression Quality
+
+            <span id="qualityValue">
+             80%
+            </span>
+            </label>
+            <input
+                type="range"
+                name="qualitySlider"
+                min="10"
+                max="100"
+                value="80"
+            >
+            <p>
+                <span id="estimatedSize">
+
+                 -
+
+                </span>  
+            </p>
+
+            <br><br>
+
+            <button
+                type="submit"
+                class="premium-btn"
+            >
+
+                ⚡ Compress Image
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+    const imageInput =
+    document.getElementById(
+    "imageInput"
+    );
+
+    const preview =
+    document.getElementById(
+    "previewImage"
+    );
+
+    imageInput.addEventListener(
+    "change",
+
+    function(){
+
+        const file =
+        this.files[0];
+
+        if(!file) return;
+
+        console.log(
+        "File Selected"
+        );
+
+        const reader =
+        new FileReader();
+
+        reader.onload =
+        function(e){
+
+            preview.src =
+            e.target.result;
+
+            preview.style.display =
+            "block";
+
+            console.log(
+            "Preview Loaded"
+            );
+
+        }
+
+        reader.readAsDataURL(file);
+
+    });
+
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="tool-page">
+
+<h1>🧾 Merge PDFs</h1>
+
+<form
+action="/merge-pdf"
+method="POST"
+enctype="multipart/form-data"
+class="tool-form"
+>
+
+<input
+type="file"
+name="pdfs"
+multiple
+required
+>
+
+<button>
+Merge PDFs
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

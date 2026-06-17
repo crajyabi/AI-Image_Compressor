@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="tool-page">
+
+    <div class="glass-card upload-card">
+
+        <div class="upload-header">
+
+            <h1>🔄 Rotate PDF</h1>
+
+            <p>
+                Rotate PDF pages instantly with futuristic processing.
+            </p>
+
+        </div>
+
+        <form
+            action="/rotate-pdf"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <label class="drop-zone">
+
+                <input
+                    type="file"
+                    name="pdf"
+                    accept=".pdf"
+                    required
+                >
+
+                <div class="upload-content">
+
+                    <div class="upload-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+
+                    <h2>
+                        Upload PDF
+                    </h2>
+
+                    <p>
+                        Drag & Drop or click to browse
+                    </p>
+
+                </div>
+
+            </label>
+
+            <button
+                type="submit"
+                class="premium-btn"
+            >
+                Rotate PDF
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

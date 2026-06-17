@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Media Toolkit</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body> 
+<div class="mouse-light"></div>
+<div class="floating-shape shape1"></div>
+<div class="floating-shape shape2"></div>
+<div class="floating-shape shape3"></div>
+<!-- LOADING SCREEN -->
+
+<div class="loader-wrapper" id="loader">
+
+    <div class="loader-content">
+
+        <div class="loader-logo">
+            ⚡
+        </div>
+
+        <h1>
+            AI Media Toolkit
+        </h1>
+
+        <div class="loader-bar">
+
+            <div class="loader-progress"></div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="ai-orb ai-orb1"></div>
+<div class="ai-orb ai-orb2"></div>
+<div class="ai-orb ai-orb3"></div>
+
+<div class="particles">
+    <canvas id="neuralCanvas"></canvas>
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+<nav class="navbar">
+
+<div class="logo">
+⚡ AI Media Toolkit
+</div>
+
+<div class="nav-links">
+
+<a href="/">Home</a>
+
+<a href="/compress-page">
+Compress
+</a>
+
+<a href="/image-to-pdf-page">
+Image → PDF
+</a>
+
+<a href="/merge-pdf-page">
+Merge PDF
+</a>
+
+<a href="/pdf-to-images-page">
+PDF → Images
+</a>
+
+<a href="/resize-page">
+Resize
+</a>
+
+<a href="/extract-text-page">
+OCR
+</a>
+
+</div>
+
+</nav>
+
+<div class="main-content">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+<script
+src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+
+</html>

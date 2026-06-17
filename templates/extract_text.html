@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="tool-page">
+
+<h1>📝 Text Extractor</h1>
+
+<form
+action="/extract-text"
+method="POST"
+enctype="multipart/form-data"
+class="tool-form"
+>
+
+<input
+type="file"
+name="image"
+required
+>
+
+<button>
+Extract Text
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

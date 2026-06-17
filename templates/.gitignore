@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+uploads/
+output/
+compressed/
+*.pyc
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.zip
+.idea/
+.vscode/

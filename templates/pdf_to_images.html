@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="tool-page">
+
+<h1>🖼️ PDF to Images</h1>
+
+<form
+action="/pdf-to-images"
+method="POST"
+enctype="multipart/form-data"
+class="tool-form"
+>
+
+<input
+type="file"
+name="pdf"
+required
+>
+
+<button>
+Extract Images
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}
